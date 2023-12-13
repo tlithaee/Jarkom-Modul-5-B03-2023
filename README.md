@@ -63,10 +63,7 @@ iface eth2 inet static
 - TurkRegion (Client)
 ```
 auto eth0
-iface eth0 inet static
-	address 10.10.0.2
-	netmask 255.255.248.0
-	gateway 10.10.0.1
+iface eth0 inet dhcp
 ```
 
 - Sein (Server)
@@ -81,10 +78,7 @@ iface eth0 inet static
 - GrobeForest (Client)
 ```
 auto eth0
-iface eth0 inet static
-	address 10.10.8.3
-	netmask 255.255.252.0
-	gateway 10.10.8.1
+iface eth0 inet dhcp
 ```
 
 - Frieren (Router)
@@ -118,10 +112,7 @@ iface eth0 inet static
 - LaubHills (Client)
 ```
 auto eth0
-iface eth0 inet static
-	address 10.10.12.2
-	netmask 255.255.254.0
-	gateway 10.10.12.1
+iface eth0 inet dhcp
 ```
 
 - Himmel (Router)
@@ -162,7 +153,7 @@ iface eth2 inet static
     netmask 255.255.255.252
 ```
 
-- Richter (Client)
+- Richter (Server)
 ```
 auto eth0
 iface eth0 inet static
@@ -174,10 +165,7 @@ iface eth0 inet static
 - SchwerMountains (Client)
 ```
 auto eth0
-iface eth0 inet static
-	address 10.10.14.3
-	netmask 255.255.255.128
-	gateway 10.10.14.1
+iface eth0 inet dhcp
 ```
 
 - Revolte (Client)
