@@ -209,16 +209,29 @@ Sesuai config network, maka pembagian IP untuk tiap nodenya adalah sebagai berik
 ## Routing
 
 - Aura
-```shell
+```
 # ke arah Frieren
 # gateway menggunakan eth0 dari Frieren
+# Routing for subnets A1, A2, A3, A4, A5, A6
+route add -net 10.10.14.128 netmask 255.255.255.252 gw 10.10.14.146
+route add -net 10.10.14.132 netmask 255.255.255.252 gw 10.10.14.146
+route add -net 10.10.14.0 netmask 255.255.255.128 gw 10.10.14.146
+route add -net 10.10.12.0 netmask 255.255.254.0 gw 10.10.14.146
+route add -net 10.10.14.136 netmask 255.255.255.252 gw 10.10.14.146
+route add -net 10.10.14.140 netmask 255.255.255.252 gw 10.10.14.146
 
 # ke arah Heiter
 # gateway menggunakan eth0 dari Heiter
+# Routing for subnets A9, A10 
+route add -net 10.10.0.0 netmask 255.255.248.0 gw 10.10.14.150
+route add -net 10.10.8.0 netmask 255.255.252.0 gw 10.10.14.150
 ```
 
 - Frieren
-```shell
+```
+# ke arah Himmel
+# gateway menggunakan eth0 dari Himmel
+# Routing for subnets A1, A2, A3, A4
 route add -net 10.10.14.128 netmask 255.255.255.252 gw 10.10.14.138
 route add -net 10.10.14.132 netmask 255.255.255.252 gw 10.10.14.138
 route add -net 10.10.14.0 netmask 255.255.255.128 gw 10.10.14.138
@@ -226,6 +239,11 @@ route add -net 10.0.12.0 netmask 255.255.255.0 gw 10.10.14.138
 ```
 
 - Himmel
-```shell
+```
+# ke arah Fern
+# gateway menggunakan eth0 dari Fern
+# Routing for subnets A1, A2
+route add -net 10.10.14.128 netmask 255.255.255.252 gw 10.10.14.2
+route add -net 10.10.14.132 netmask 255.255.255.252 gw 10.10.14.2
 
 ```
