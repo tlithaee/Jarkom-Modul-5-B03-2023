@@ -182,20 +182,20 @@ iface eth0 inet static
 Sesuai config network, maka pembagian IP untuk tiap nodenya adalah sebagai berikut:
 | Node               | Subnet | Interface | IP Address    | Netmask         | Gateway        |
 |--------------------|--------|-----------|---------------|-----------------|----------------|
-| Aura (Router)      |        | eth0      | DHCP          | -               | -              |
+| Aura (Router)      |   -    | eth0      | DHCP          | -               | -              |
 |                    |   A8   | eth1      | 10.10.14.149  | 255.255.255.252 | -              |
 |                    |   A7   | eth2      | 10.10.14.145  | 255.255.255.252 | -              |
 | Heiter (Router)    |   A8   | eth0      | 10.10.14.150  | 255.255.255.252 | 10.10.14.149   |
 |                    |   A9   | eth1      | 10.10.0.1     | 255.255.248.0   | -              |
 |                    |  A10   | eth2      | 10.10.8.1     | 255.255.252.0   | -              |
-| TurkRegion         |        | eth0      | DHCP          | -               | -              |
+| TurkRegion         |   A9   | eth0      | DHCP          | -               | -              |
 | Sein (Server)      |  A10   | eth0      | 10.10.8.2     | 255.255.252.0   | 10.10.8.1      |
-| GrobeForest        |        | eth0      | DHCP          | -               | -              |
+| GrobeForest        |  A10   | eth0      | DHCP          | -               | -              |
 | Frieren (Router)   |   A7   | eth0      | 10.10.14.146  | 255.255.255.252 | 10.10.14.145   |
 |                    |   A5   | eth1      | 10.10.14.137  | 255.255.255.252 | -              |
 |                    |   A6   | eth2      | 10.10.14.141  | 255.255.255.252 | -              |
 | Stark (Server)     |   A6   | eth0      | 10.10.14.142  | 255.255.255.252 | 10.10.14.141   |
-| LaubHills (Client) |        | eth0      | DHCP          | -               | -              |
+| LaubHills (Client) |   A4   | eth0      | DHCP          | -               | -              |
 | Himmel (Router)    |   A5   | eth0      | 10.10.14.138  | 255.255.255.252 | 10.10.14.137   |
 |                    |   A4   | eth1      | 10.10.12.1    | 255.255.254.0   | -              |
 |                    |   A3   | eth2      | 10.10.14.1    | 255.255.255.128 | -              |
@@ -203,7 +203,7 @@ Sesuai config network, maka pembagian IP untuk tiap nodenya adalah sebagai berik
 |                    |   A2   | eth1      | 10.10.14.133  | 255.255.255.252 | -              |
 |                    |   A1   | eth2      | 10.10.14.129  | 255.255.255.252 | -              |
 | Richter (Server)   |   A2   | eth0      | 10.10.14.134  | 255.255.255.252 | 10.10.14.133   |
-| SchwerMountains (Client) |        | eth0 | DHCP          | -               | -              |
+| SchwerMountains (Client) |   A3   | eth0 | DHCP          | -               | -              |
 | Revolte (Client)   |   A1   | eth0      | 10.10.14.130  | 255.255.255.252 | 10.10.14.129   |
 
 ## Routing
