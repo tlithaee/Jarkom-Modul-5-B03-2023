@@ -7,12 +7,16 @@ Berikut adalah laporan resmi untuk praktikum modul 4 jarkom.
 |Syarifah Talitha Erfany | 5025211175 |
 
 ## Daftar Isi
+  - [Topologi dan Pembagian Subnet](#topologi-dan-pembagian-subnet)
   - [Rute](#rute)
   - [Tree](#tree)
   - [Config GNS3](#config-gns3)
   - [Pembagian IP](#pembagian-ip)
   - [Routing](#routing)
   - [Testing](#testing)
+
+## Topologi dan Pembagian Subnet
+![Alt text](TopologiPrak5.png)
 
 ## Rute
 ![Alt text](image.png)
@@ -181,16 +185,16 @@ Sesuai config network, maka pembagian IP untuk tiap nodenya adalah sebagai berik
 | Aura (Router)      |        | eth0      | DHCP          | -               | -              |
 |                    |   A8   | eth1      | 10.10.14.149  | 255.255.255.252 | -              |
 |                    |   A7   | eth2      | 10.10.14.145  | 255.255.255.252 | -              |
-| Heiter (Router)    |        | eth0      | 10.10.14.150  | 255.255.255.252 | 10.10.14.149   |
-|                    |        | eth1      | 10.10.0.1     | 255.255.248.0   | -              |
-|                    |        | eth2      | 10.10.8.1     | 255.255.252.0   | -              |
+| Heiter (Router)    |   A8   | eth0      | 10.10.14.150  | 255.255.255.252 | 10.10.14.149   |
+|                    |   A9   | eth1      | 10.10.0.1     | 255.255.248.0   | -              |
+|                    |  A10   | eth2      | 10.10.8.1     | 255.255.252.0   | -              |
 | TurkRegion         |        | eth0      | DHCP          | -               | -              |
-| Sein (Server)      |        | eth0      | 10.10.8.2     | 255.255.252.0   | 10.10.8.1      |
+| Sein (Server)      |  A10   | eth0      | 10.10.8.2     | 255.255.252.0   | 10.10.8.1      |
 | GrobeForest        |        | eth0      | DHCP          | -               | -              |
 | Frieren (Router)   |   A7   | eth0      | 10.10.14.146  | 255.255.255.252 | 10.10.14.145   |
 |                    |   A5   | eth1      | 10.10.14.137  | 255.255.255.252 | -              |
 |                    |   A6   | eth2      | 10.10.14.141  | 255.255.255.252 | -              |
-| Stark (Server)     |        | eth0      | 10.10.14.142  | 255.255.255.252 | 10.10.14.141   |
+| Stark (Server)     |   A6   | eth0      | 10.10.14.142  | 255.255.255.252 | 10.10.14.141   |
 | LaubHills (Client) |        | eth0      | DHCP          | -               | -              |
 | Himmel (Router)    |   A5   | eth0      | 10.10.14.138  | 255.255.255.252 | 10.10.14.137   |
 |                    |   A4   | eth1      | 10.10.12.1    | 255.255.254.0   | -              |
