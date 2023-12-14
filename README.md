@@ -24,7 +24,7 @@ Berikut adalah laporan resmi untuk praktikum modul 4 jarkom.
 ## Tree
 ![Alt text](TreeVLSM.png)
 
-## Config GNS
+## Config GNS3
 
 - Aura (Router)
 ```
