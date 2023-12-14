@@ -8,7 +8,7 @@ Berikut adalah laporan resmi untuk praktikum modul 4 jarkom.
 
 ## Daftar Isi
   - [Config](#Config)
-  - [Topologi Cisco Packet Tracer CIDR](#topologi-cisco-packet-tracer-cidr)
+  - [Routing](#Routing)
   - [Rute](#rute)
 - [VLSM](#vlsm)
   - [Tree](#tree)
@@ -168,11 +168,22 @@ auto eth0
 iface eth0 inet dhcp
 ```
 
-- Revolte (Client)
+- Revolte (Server)
 ```
 auto eth0
 iface eth0 inet static
 	address 10.10.14.130
 	netmask 255.255.255.252
 	gateway 10.10.14.129
+```
+
+## Routing
+
+- Aura
+```
+# ke arah Frieren
+# gateway menggunakan eth0 dari Frieren
+
+# ke arah Heiter
+# gateway menggunakan eth0 dari Heiter
 ```
