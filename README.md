@@ -511,7 +511,7 @@ iptables -A INPUT -m recent --name scan_port --set -j ACCEPT
 iptables -A FORWARD -m recent --name scan_port --set -j ACCEPT
 ```
 
-*CEK DI GITHUB AKMAL LEBIH LANJUT*
+*blum pasti bener*
 
 ### Screenshot
 
