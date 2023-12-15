@@ -67,9 +67,6 @@ up echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
 auto eth0
 iface eth0 inet dhcp
-	gateway 10.10.0.1
-
-up echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
 
 - Sein (Server)
@@ -78,18 +75,12 @@ auto eth0
 iface eth0 inet static
 	address 10.10.8.2
 	netmask 255.255.252.0
-	gateway 10.10.8.1
-
-up echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
 
 - GrobeForest (Client)
 ```
 auto eth0
 iface eth0 inet dhcp
-	gateway 10.10.8.1
-
-up echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
 
 - Frieren (Router)
@@ -128,9 +119,6 @@ up echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
 auto eth0
 iface eth0 inet dhcp
-	gateway 10.10.12.1
-
-up echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
 
 - Himmel (Router)
@@ -190,9 +178,6 @@ up echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
 auto eth0
 iface eth0 inet dhcp
-	gateway 10.10.14.1
-
-up echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
 
 - Revolte (Server)
