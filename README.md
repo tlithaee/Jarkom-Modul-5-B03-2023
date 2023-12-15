@@ -393,6 +393,10 @@ iptables -t nat -A POSTROUTING -o eth0 -j SNAT --to-source $ETH0_IP
 > Kalian diminta untuk melakukan drop semua TCP dan UDP kecuali port 8080 pada TCP.
 
 ```
+apt install netcat
+```
+
+```
 # Allow incoming TCP traffic on port 8080
 iptables -A INPUT -p tcp --dport 8080 -j ACCEPT
 
