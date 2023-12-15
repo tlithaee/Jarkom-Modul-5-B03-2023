@@ -383,11 +383,17 @@ iptables -t nat -A POSTROUTING -o eth0 -j SNAT --to-source $ETH0_IP
 
 ### Screenshot
 
+- Router
+
 ![](no1/aura.png)
 
-![](no1/Himmel.png)
+- Server
 
 ![](no1/stark.png)
+
+- Client
+
+*ON PROGRESS*
 
 ## Number 2
 > Kalian diminta untuk melakukan drop semua TCP dan UDP kecuali port 8080 pada TCP.
@@ -396,6 +402,7 @@ iptables -t nat -A POSTROUTING -o eth0 -j SNAT --to-source $ETH0_IP
 apt install netcat
 ```
 
+- Script dibawah ditaruh di receiver saja
 ```
 # Allow incoming TCP traffic on port 8080
 iptables -A INPUT -p tcp --dport 8080 -j ACCEPT
@@ -418,6 +425,18 @@ nc <ip receiver> <port lain>
 ```
 
 ### Screenshot
+
+- Server -> Server
+
+	- Stark as Sender
+
+	![](no2/stark.png)
+
+	- Sein as Receiver
+
+	![](no2/sein.png)
+
+- Server -> Client *ON PROGRESS*
 
 ## Number 3
 > Kepala Suku North Area meminta kalian untuk membatasi DHCP dan DNS Server hanya dapat dilakukan ping oleh maksimal 3 device secara bersamaan, selebihnya akan di drop.
