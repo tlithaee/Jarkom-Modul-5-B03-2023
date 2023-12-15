@@ -275,7 +275,7 @@ up route add -net 10.10.14.128 netmask 255.255.255.252 gw 10.10.14.2
 up route add -net 10.10.14.132 netmask 255.255.255.252 gw 10.10.14.2
 ```
 
-- DHCP Server (Aura)
+- DHCP Server (Revolte)
 	- .bashrc
 	```
 	apt-get update -y
@@ -287,44 +287,51 @@ up route add -net 10.10.14.132 netmask 255.255.255.252 gw 10.10.14.2
 	echo 'INTERFACESv4="eth0"' > /etc/default/isc-dhcp-server
 
 	echo '
+	#A1
 	subnet 10.10.14.128 netmask 255.255.255.252 {
 	}
+	#A2
 	subnet 10.10.14.132 netmask 255.255.255.252 {
 	}
+	#A3
 	subnet 10.10.14.0 netmask 255.255.255.128 {
-		range 10.10.14.1 10.10.14.126;
-			option routers 10.10.14.130;
+		range 10.10.14.3 10.10.14.126;
+			option routers 10.10.14.1;
 			option broadcast-address 10.10.14.127;
-			option domain-name-servers 10.10.14.6;
+			option domain-name-servers 10.10.14.134;
 			default-lease-time 3600;
 			max-lease-time 5760;
 	}
+	#A4
 	subnet 10.10.12.0 netmask 255.255.254.0 {
-		range 10.10.12.1 10.10.13.254;
+		range 10.10.12.3 10.10.13.254;
 			option routers 10.10.12.1;
 			option broadcast-address 10.10.13.255;
-			option domain-name-servers 10.10.14.6;
+			option domain-name-servers 10.10.14.134;
 			default-lease-time 3600;
 			max-lease-time 5760;
 	}
+	#A5
 	subnet 10.10.14.136 netmask 255.255.255.252 {
 	}
+	#A6
 	subnet 10.10.14.140 netmask 255.255.255.252 {
 	}
+	#A9
 	subnet 10.10.0.0 netmask 255.255.248.0 {
-		range 10.10.0.1 10.10.7.254;
+		range 10.10.0.2 10.10.7.254;
 			option routers 10.10.0.1;
 			option broadcast-address 10.10.7.255;
-			option domain-name-servers 10.10.14.6;
+			option domain-name-servers 10.10.14.134;
 			default-lease-time 3600;
 			max-lease-time 5760;
-
 	}
+	#A10
 	subnet 10.10.8.0 netmask 255.255.252.0 {
-		range 10.10.8.1 10.10.11.254;
+		range 10.10.8.3 10.10.11.254;
 			option routers 10.10.8.1;
 			option broadcast-address 10.10.11.255;
-			option domain-name-servers 10.10.14.6;
+			option domain-name-servers 10.10.14.134;
 			default-lease-time 3600;
 			max-lease-time 5760;
 
@@ -335,7 +342,7 @@ up route add -net 10.10.14.132 netmask 255.255.255.252 gw 10.10.14.2
 	service isc-dhcp-server start
 	```
 
-- DHCP Relay (Fern - Heiter - Himmel)
+- DHCP Relay (Fern - Heiter - Himmel - Aura - Frieren)
 	- .bashrc
 	```
 	apt-get update
@@ -348,7 +355,7 @@ up route add -net 10.10.14.132 netmask 255.255.255.252 gw 10.10.14.2
 	SERVERS="10.10.0.2"
 	INTERFACES="eth0 eth1 eth2"
 	OPTIONS=
-	' > etc/default/isc-dhcp-relay
+	' > /etc/default/isc-dhcp-relay
 
 	echo 'net.ipv4.ip_forward=1' > /etc/sysctl.conf
 
@@ -390,6 +397,12 @@ iptables -t nat -A POSTROUTING -o eth0 -j SNAT --to-source $ETH0_IP
 ```
 
 ### Screenshot
+
+![](no1/aura.png)
+
+![](no1/Himmel.png)
+
+![](no1/stark.png)
 
 ## Number 2
 > Kalian diminta untuk melakukan drop semua TCP dan UDP kecuali port 8080 pada TCP.
