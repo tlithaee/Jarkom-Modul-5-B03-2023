@@ -408,15 +408,24 @@ iptables -t nat -A POSTROUTING -o eth0 -j SNAT --to-source $ETH0_IP
 > Kalian diminta untuk melakukan drop semua TCP dan UDP kecuali port 8080 pada TCP.
 
 ```
-iptables -F
-
-iptables -A INPUT -p icmp -j ACCEPT
-
+# Allow incoming TCP traffic on port 8080
 iptables -A INPUT -p tcp --dport 8080 -j ACCEPT
 
+# Drop all other incoming TCP traffic
 iptables -A INPUT -p tcp -j DROP
 
+# Drop all other incoming UDP traffic
 iptables -A INPUT -p udp -j DROP
+```
+
+- testing
+
+```
+nc -l -p 8080 di receiver 
+nc <ip receiver> 8080
+
+nc -l -p <port lain> di receiver 
+nc <ip receiver> <port lain>
 ```
 
 ### Screenshot
@@ -431,6 +440,18 @@ iptables -A INPUT -p icmp -m connlimit --connlimit-above 3 --connlimit-mask 0 -j
 ```
 
 ### Screenshot
+
+- node 1
+![](no3/stark.png)
+
+- node 2
+![](no3/sein.png)
+
+- node 3
+![](no3/heiter.png)
+
+- node 4 (tidak bisa diping lagi)
+![](no3/frieren.png)
 
 ## Number 4
 > Lakukan pembatasan sehingga koneksi SSH pada Web Server hanya dapat dilakukan oleh masyarakat yang berada pada GrobeForest.
