@@ -240,6 +240,11 @@ up route add -net 10.10.0.0 netmask 255.255.248.0 gw 10.10.14.150
 up route add -net 10.10.8.0 netmask 255.255.252.0 gw 10.10.14.150
 ```
 
+- Heiter
+```
+route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.10.14.149
+```
+
 - Frieren
 ```
 # ke arah Himmel
@@ -249,6 +254,7 @@ up route add -net 10.10.14.128 netmask 255.255.255.252 gw 10.10.14.138
 up route add -net 10.10.14.132 netmask 255.255.255.252 gw 10.10.14.138
 up route add -net 10.10.14.0 netmask 255.255.255.128 gw 10.10.14.138
 up route add -net 10.0.12.0 netmask 255.255.255.0 gw 10.10.14.138
+route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.10.14.145
 ```
 
 - Himmel
@@ -258,6 +264,12 @@ up route add -net 10.0.12.0 netmask 255.255.255.0 gw 10.10.14.138
 # Routing for subnets A1, A2
 up route add -net 10.10.14.128 netmask 255.255.255.252 gw 10.10.14.2
 up route add -net 10.10.14.132 netmask 255.255.255.252 gw 10.10.14.2
+route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.10.14.137
+```
+
+- Fern
+```
+route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.10.14.1
 ```
 
 - DHCP Server (Revolte)
@@ -269,6 +281,8 @@ up route add -net 10.10.14.132 netmask 255.255.255.252 gw 10.10.14.2
 
 	- start.sh
 	```
+	rm /var/run/dhcpd.pid
+
 	echo 'INTERFACESv4="eth0"' > /etc/default/isc-dhcp-server
 
 	echo '
@@ -337,7 +351,7 @@ up route add -net 10.10.14.132 netmask 255.255.255.252 gw 10.10.14.2
 	- start.sh
 	```
 	echo '
-	SERVERS="10.10.0.2"
+	SERVERS="10.10.14.130"
 	INTERFACES="eth0 eth1 eth2"
 	OPTIONS=
 	' > /etc/default/isc-dhcp-relay
