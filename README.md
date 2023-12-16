@@ -580,30 +580,30 @@ iptables -A INPUT -m time --timestart 11:00 --timestop 13:00 --weekdays Fri -j R
 - Testing GrobeForest ping ke Stark pada saat makan siang
   - Set jam pada stark menjadi senin 12:10 PM
 
-	![Alt text](image.png)
+	![Alt text](no6/image.png)
   - Test ping dari GrobeForest dan gagal
 
-	![Alt text](image-1.png)
+	![Alt text](no6/image-1.png)
 
 - Testing GrobeForest ping ke Stark pada saat jumatan
 
   - Set jam pada stark menjadi jumat 11:10 AM
 
-	![Alt text](image-2.png)
+	![Alt text](no6/image-2.png)
 	
   - Test ping dari GrobeForest dan unreachable
 
-	![Alt text](image-3.png)
+	![Alt text](no6/image-3.png)
 
 - Testing GrobeForest ping ke Stark diluar waktu makan siang dan jumatan
 
   - Set jam pada stark menjadi wed 10:00 AM
 
-	![Alt text](image-4.png)
+	![Alt text](no6/image-4.png)
 	
   - Test ping dari GrobeForest dan unreachable
 
-	![Alt text](image-5.png)
+	![Alt text](no6/image-5.png)
 
 ## Number 7
 > Karena terdapat 2 WebServer, kalian diminta agar setiap client yang mengakses Sein dengan Port 80 akan didistribusikan secara bergantian pada Sein dan Stark secara berurutan dan request dari client yang mengakses Stark dengan port 443 akan didistribusikan secara bergantian pada Sein dan Stark secara berurutan.
