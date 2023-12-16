@@ -32,7 +32,7 @@ Berikut adalah laporan resmi untuk praktikum modul 5 jarkom.
 ![Alt text](TopologiPrak5.png)
 
 ## Rute
-![Alt text](image.png)
+![Alt text](rute.png)
 
 ## Tree
 ![Alt text](TreeVLSM.png)
@@ -474,6 +474,7 @@ apt install netcat
 	- TurkRegion as Receiver
 
 		![Alt text](no2/turkregion.png)
+		
 ## Number 3
 > Kepala Suku North Area meminta kalian untuk membatasi DHCP dan DNS Server hanya dapat dilakukan ping oleh maksimal 3 device secara bersamaan, selebihnya akan di drop.
 
@@ -507,12 +508,39 @@ iptables -A INPUT -p tcp --dport 22 -j DROP
 ```
 
 ### Screenshot
+- testing `nmap 10.10.14.142 -p 22` pada GrobeForest, bisa terlihat dia open untuk port 22.
+
+	![](no4/open.png)
+
+- testing `nmap 10.10.14.142 -p 22` pada TurkRegion, bisa terlihat dia closed untuk port 22.
+
+	![Alt text](image.png)
+
+- Testing dari GrobeForest sebagai sender dan Stark sebagai receiver
+
+	- GrobeForest as Sender
+
+		![](no4/grobeforest.png)
+
+	- Stark as Receiver
+
+		![](no4/stark1.png)
+
+- Testing dari TurkRegion sebagai sender dan Stark sebagai receiver
+
+	- TurkRegion as Sender
+
+		![](no4/turkregion.png)
+
+	- Stark as Receiver
+
+		![](no4/stark2.png)
 
 ## Number 5
 > Selain itu, akses menuju WebServer hanya diperbolehkan saat jam kerja yaitu Senin-Jumat pada pukul 08.00-16.00.
 
 ```
-iptables -A INPUT -p tcp --dport 22 -s 192.177.4.0/22 -m time --timestart 08:00 --timestop 16:00 --weekdays Mon,Tue,Wed,Thu,Fri -j ACCEPT
+iptables -A INPUT -p tcp --dport 22 -s 10.10.8.0/22 -m time --timestart 08:00 --timestop 16:00 --weekdays Mon,Tue,Wed,Thu,Fri -j ACCEPT
 
 iptables -A INPUT -p tcp --dport 22 -j DROP
 ```
@@ -523,9 +551,9 @@ iptables -A INPUT -p tcp --dport 22 -j DROP
 > Lalu, karena ternyata terdapat beberapa waktu di mana network administrator dari WebServer tidak bisa stand by, sehingga perlu ditambahkan rule bahwa akses pada hari Senin - Kamis pada jam 12.00 - 13.00 dilarang (istirahat maksi cuy) dan akses di hari Jumat pada jam 11.00 - 13.00 juga dilarang (maklum, Jumatan rek).
 
 ```
-iptables -A INPUT -p tcp --dport 22 -s 192.177.4.0/22 -m time --timestart 12:00 --timestop 13:00 --weekdays Mon,Tue,Wed,Thu -j DROP
+iptables -A INPUT -p tcp --dport 22 -s 10.10.8.0/22 -m time --timestart 12:00 --timestop 13:00 --weekdays Mon,Tue,Wed,Thu -j DROP
 
-iptables -A INPUT -p tcp --dport 22 -s 192.177.4.0/22 -m time --timestart 11:00 --timestop 13:00 --weekdays Fri -j DROP
+iptables -A INPUT -p tcp --dport 22 -s 10.10.8.0/22 -m time --timestart 11:00 --timestop 13:00 --weekdays Fri -j DROP
 ```
 
 ### Screenshot
