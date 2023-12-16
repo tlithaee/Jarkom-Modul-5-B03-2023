@@ -423,6 +423,7 @@ iptables -t nat -A POSTROUTING -o eth0 -j SNAT --to-source $ETH0_IP
 	![](no1/stark.png)
 
 - Client
+	
 	![](no1/turkregion.png)
 
 ## Number 2
@@ -621,25 +622,32 @@ iptables -A PREROUTING -t nat -p tcp --dport 443 -d 10.10.14.142 -j DNAT --to-de
 
 ### Screenshot
 - Jalankan `iptables -t nat -L PREROUTING --line-numbers -v` di heiter
+	
 	![Alt text](no7/image.png)
 - Untuk port 80
   - Di Sein
+	
 	![Alt text](no7/image-1.png)
  
   - Di Stark
+	
 	![Alt text](no7/image-2.png)
 
   - Testing di TurkRegion
+	
 	![Alt text](no7/image-3.png)
 
 - Untuk port 443
   - Di Sein
+	
 	![Alt text](no7/image-4.png)
 
   - Di Stark
+	
 	![Alt text](no7/image-5.png)
 
   - Testing di TurkRegion
+	
 	![Alt text](no7/image-6.png)
 
 
