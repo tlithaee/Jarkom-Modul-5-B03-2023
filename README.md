@@ -514,7 +514,7 @@ iptables -A INPUT -p tcp --dport 22 -j DROP
 
 - testing `nmap 10.10.14.142 -p 22` pada TurkRegion, bisa terlihat dia closed untuk port 22.
 
-	![Alt text](image.png)
+	![](no4/closed.png)
 
 - Testing dari GrobeForest sebagai sender dan Stark sebagai receiver
 
@@ -544,6 +544,7 @@ iptables -A INPUT -p tcp --dport 22 -s 10.10.8.0/22 -m time --timestart 08:00 --
 
 iptables -A INPUT -p tcp --dport 22 -j DROP
 ```
+
 
 ### Screenshot
 
