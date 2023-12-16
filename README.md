@@ -501,10 +501,11 @@ iptables -A INPUT -p icmp -m connlimit --connlimit-above 3 --connlimit-mask 0 -j
 ## Number 4
 > Lakukan pembatasan sehingga koneksi SSH pada Web Server hanya dapat dilakukan oleh masyarakat yang berada pada GrobeForest.
 
+Pada web server, jalankan command dibawah ini:
 ```
 iptables -A INPUT -p tcp --dport 22 -s 10.10.8.0/22 -j ACCEPT
 
-iptables -A INPUT -p tcp --dport 22 -j DROP
+iptables -A INPUT -p tcp --dport 22 -j REJECT
 ```
 
 ### Screenshot
@@ -539,25 +540,70 @@ iptables -A INPUT -p tcp --dport 22 -j DROP
 ## Number 5
 > Selain itu, akses menuju WebServer hanya diperbolehkan saat jam kerja yaitu Senin-Jumat pada pukul 08.00-16.00.
 
+Pada web server, jalankan command dibawah ini:
 ```
-iptables -A INPUT -p tcp --dport 22 -s 10.10.8.0/22 -m time --timestart 08:00 --timestop 16:00 --weekdays Mon,Tue,Wed,Thu,Fri -j ACCEPT
+iptables -A INPUT -m time --timestart 08:00 --timestop 16:00 --weekdays Mon,Tue,Wed,Thu,Fri -j ACCEPT
 
-iptables -A INPUT -p tcp --dport 22 -j DROP
+iptables -A INPUT -j REJECT
 ```
-
 
 ### Screenshot
+- Testing GrobeForest ping ke Stark didalam jam kerja
+  - Set jam pada stark menjadi rabu 10:00 AM
+
+	![Alt text](no5/image.png)
+  - Test ping dari GrobeForest dan berhasil
+
+	![Alt text](no5/image-1.png)
+
+- Testing GrobeForest ping ke Stark diluar jam kerja
+
+  - Set jam pada stark menjadi rabu 17:00 PM
+
+	![Alt text](no5/image-2.png)
+	
+  - Test ping dari GrobeForest dan unreachable
+
+	![Alt text](no5/image-3.png)
 
 ## Number 6
 > Lalu, karena ternyata terdapat beberapa waktu di mana network administrator dari WebServer tidak bisa stand by, sehingga perlu ditambahkan rule bahwa akses pada hari Senin - Kamis pada jam 12.00 - 13.00 dilarang (istirahat maksi cuy) dan akses di hari Jumat pada jam 11.00 - 13.00 juga dilarang (maklum, Jumatan rek).
 
+Pada web server, jalankan command dibawah ini:
 ```
-iptables -A INPUT -p tcp --dport 22 -s 10.10.8.0/22 -m time --timestart 12:00 --timestop 13:00 --weekdays Mon,Tue,Wed,Thu -j DROP
+iptables -A INPUT -m time --timestart 12:00 --timestop 13:00 --weekdays Mon,Tue,Wed,Thu -j REJECT
 
-iptables -A INPUT -p tcp --dport 22 -s 10.10.8.0/22 -m time --timestart 11:00 --timestop 13:00 --weekdays Fri -j DROP
+iptables -A INPUT -m time --timestart 11:00 --timestop 13:00 --weekdays Fri -j REJECT
 ```
 
 ### Screenshot
+- Testing GrobeForest ping ke Stark pada saat makan siang
+  - Set jam pada stark menjadi senin 12:10 PM
+
+	![Alt text](image.png)
+  - Test ping dari GrobeForest dan gagal
+
+	![Alt text](image-1.png)
+
+- Testing GrobeForest ping ke Stark pada saat jumatan
+
+  - Set jam pada stark menjadi jumat 11:10 AM
+
+	![Alt text](image-2.png)
+	
+  - Test ping dari GrobeForest dan unreachable
+
+	![Alt text](image-3.png)
+
+- Testing GrobeForest ping ke Stark diluar waktu makan siang dan jumatan
+
+  - Set jam pada stark menjadi wed 10:00 AM
+
+	![Alt text](image-4.png)
+	
+  - Test ping dari GrobeForest dan unreachable
+
+	![Alt text](image-5.png)
 
 ## Number 7
 > Karena terdapat 2 WebServer, kalian diminta agar setiap client yang mengakses Sein dengan Port 80 akan didistribusikan secara bergantian pada Sein dan Stark secara berurutan dan request dari client yang mengakses Stark dengan port 443 akan didistribusikan secara bergantian pada Sein dan Stark secara berurutan.
