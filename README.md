@@ -10,10 +10,10 @@ Berikut adalah laporan resmi untuk praktikum modul 5 jarkom.
   - [Topologi dan Pembagian Subnet](#topologi-dan-pembagian-subnet)
   - [Rute](#rute)
   - [Tree](#tree)
-  - [Config GNS3](#config-gns3)
+  - [Konfigurasi GNS3](#konfigurasi-gns3)
   - [Pembagian IP](#pembagian-ip)
   - [Routing](#routing)
-  - [Testing](#testing)
+  - [Konfigurasi Awal](#konfigurasi-awal)
 
 ## Topologi dan Pembagian Subnet
 ![Alt text](TopologiPrak5.png)
@@ -24,7 +24,7 @@ Berikut adalah laporan resmi untuk praktikum modul 5 jarkom.
 ## Tree
 ![Alt text](TreeVLSM.png)
 
-## Config GNS3
+## konfigurasi GNS3
 
 - Aura (Router)
 ```
@@ -192,7 +192,7 @@ up echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
 
 ## Pembagian IP
-Sesuai config network, maka pembagian IP untuk tiap nodenya adalah sebagai berikut:
+Sesuai konfigurasi network, maka pembagian IP untuk tiap nodenya adalah sebagai berikut:
 | Node               | Subnet | Interface | IP Address    | Netmask         | Gateway        |
 |--------------------|--------|-----------|---------------|-----------------|----------------|
 | Aura (Router)      |   -    | eth0      | DHCP          | -               | -              |
@@ -272,14 +272,15 @@ route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.10.14.137
 route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.10.14.1
 ```
 
-- DHCP Server (Revolte)
-	- .bashrc
+## Konfigurasi Awal
+### DHCP Server (Revolte)
+- .bashrc
 	```
 	apt-get update -y
 	apt-get install isc-dhcp-server -y
 	```
 
-	- start.sh
+- start.sh
 	```
 	rm /var/run/dhcpd.pid
 
@@ -341,14 +342,14 @@ route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.10.14.1
 	service isc-dhcp-server start
 	```
 
-- DHCP Relay (Fern - Heiter - Himmel - Aura - Frieren)
-	- .bashrc
+### DHCP Relay (Fern - Heiter - Himmel - Aura - Frieren)
+- .bashrc
 	```
 	apt-get update
 	apt-get install isc-dhcp-relay -y
 	```
 
-	- start.sh
+- start.sh
 	```
 	echo '
 	SERVERS="10.10.14.130"
@@ -361,14 +362,14 @@ route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.10.14.1
 	service isc-dhcp-relay restart
 	```
 
-- DNS Server (Richter)	
-	- .bashrc
+### DNS Server (Richter)	
+- .bashrc
 	```
 	apt-get update
 	apt-get install bind9 -y
 	```
 
-	- start.sh
+- start.sh
 	```
 	echo '
 	options {
@@ -406,8 +407,7 @@ iptables -t nat -A POSTROUTING -o eth0 -j SNAT --to-source $ETH0_IP
 ![](no1/stark.png)
 
 - Client
-
-*ON PROGRESS*
+![](no1/turkregion.png)
 
 ## Number 2
 > Kalian diminta untuk melakukan drop semua TCP dan UDP kecuali port 8080 pada TCP.
@@ -444,14 +444,18 @@ nc <ip receiver> <port lain>
 
 	- Stark as Sender
 
-	![](no2/stark.png)
+	![](no2/stark1.png)
 
 	- Sein as Receiver
 
 	![](no2/sein.png)
 
-- Server -> Client *ON PROGRESS*
+- Server -> Client
+	- Stark as Sender
+	![Alt text](no2/stark2.png)
 
+	- TurkRegion as Receiver
+	![Alt text](no2/turkregion.png)
 ## Number 3
 > Kepala Suku North Area meminta kalian untuk membatasi DHCP dan DNS Server hanya dapat dilakukan ping oleh maksimal 3 device secara bersamaan, selebihnya akan di drop.
 
