@@ -24,178 +24,180 @@ Berikut adalah laporan resmi untuk praktikum modul 5 jarkom.
 ## Tree
 ![Alt text](TreeVLSM.png)
 
-## konfigurasi GNS3
+Sesuai perhitungan VLSM pembagian IP untuk tiap subnet adalah sebagai berikut:
+
+![Alt text](pembagiannid.png)
+![Alt text](image-1.png)
+
+## Konfigurasi GNS3
 
 - Aura (Router)
-```
-auto eth0
-iface eth0 inet dhcp
+	```
+	auto eth0
+	iface eth0 inet dhcp
 
-auto eth1
-iface eth1 inet static
-	address 10.10.14.149
-	netmask 255.255.255.252
+	auto eth1
+	iface eth1 inet static
+		address 10.10.14.149
+		netmask 255.255.255.252
 
-auto eth2
-iface eth2 inet static
-	address 10.10.14.145
-	netmask 255.255.255.252
-```
+	auto eth2
+	iface eth2 inet static
+		address 10.10.14.145
+		netmask 255.255.255.252
+	```
 
 - Heiter (Router)
-```
-auto eth0
-iface eth0 inet static
-	address 10.10.14.150
-	netmask 255.255.255.252
-	gateway 10.10.14.149
+	```
+	auto eth0
+	iface eth0 inet static
+		address 10.10.14.150
+		netmask 255.255.255.252
+		gateway 10.10.14.149
 
-auto eth1
-iface eth1 inet static
-    address 10.10.0.1
-    netmask 255.255.248.0
+	auto eth1
+	iface eth1 inet static
+		address 10.10.0.1
+		netmask 255.255.248.0
 
-auto eth2
-iface eth2 inet static
-    address 10.10.8.1
-    netmask 255.255.252.0
+	auto eth2
+	iface eth2 inet static
+		address 10.10.8.1
+		netmask 255.255.252.0
 
-up echo nameserver 192.168.122.1 > /etc/resolv.conf
-```
+	up echo nameserver 192.168.122.1 > /etc/resolv.conf
+	```
 
 - TurkRegion (Client)
-```
-auto eth0
-iface eth0 inet dhcp
-```
+	```
+	auto eth0
+	iface eth0 inet dhcp
+	```
 
 - Sein (Server)
-```
-auto eth0
-iface eth0 inet static
-	address 10.10.8.2
-	netmask 255.255.252.0
-```
+	```
+	auto eth0
+	iface eth0 inet static
+		address 10.10.8.2
+		netmask 255.255.252.0
+	```
 
 - GrobeForest (Client)
-```
-auto eth0
-iface eth0 inet dhcp
-```
+	```
+	auto eth0
+	iface eth0 inet dhcp
+	```
 
 - Frieren (Router)
-```
-auto eth0
-iface eth0 inet static
-	address 10.10.14.146
-	netmask 255.255.255.252
-	gateway 10.10.14.145
+	```
+	auto eth0
+	iface eth0 inet static
+		address 10.10.14.146
+		netmask 255.255.255.252
+		gateway 10.10.14.145
 
-auto eth1
-iface eth1 inet static
-    address 10.10.14.137
-    netmask 255.255.255.252
+	auto eth1
+	iface eth1 inet static
+		address 10.10.14.137
+		netmask 255.255.255.252
 
-auto eth2
-iface eth2 inet static
-    address 10.10.14.141
-    netmask 255.255.255.252
+	auto eth2
+	iface eth2 inet static
+		address 10.10.14.141
+		netmask 255.255.255.252
 
-up echo nameserver 192.168.122.1 > /etc/resolv.conf
-```
+	up echo nameserver 192.168.122.1 > /etc/resolv.conf
+	```
 
 - Stark (Server)
-```
-auto eth0
-iface eth0 inet static
-	address 10.10.14.142
-	netmask 255.255.255.252
-	gateway 10.10.14.141
+	```
+	auto eth0
+	iface eth0 inet static
+		address 10.10.14.142
+		netmask 255.255.255.252
+		gateway 10.10.14.141
 
-up echo nameserver 192.168.122.1 > /etc/resolv.conf
-```
+	up echo nameserver 192.168.122.1 > /etc/resolv.conf
+	```
 
 - LaubHills (Client)
-```
-auto eth0
-iface eth0 inet dhcp
-```
+	```
+	auto eth0
+	iface eth0 inet dhcp
+	```
 
 - Himmel (Router)
-```
-auto eth0
-iface eth0 inet static
-	address 10.10.14.138
-	netmask 255.255.255.252
-	gateway 10.10.14.137
+	```
+	auto eth0
+	iface eth0 inet static
+		address 10.10.14.138
+		netmask 255.255.255.252
+		gateway 10.10.14.137
 
-auto eth1
-iface eth1 inet static
-    address 10.10.12.1
-    netmask 255.255.254.0
+	auto eth1
+	iface eth1 inet static
+		address 10.10.12.1
+		netmask 255.255.254.0
 
-auto eth2
-iface eth2 inet static
-    address 10.10.14.1
-    netmask 255.255.255.128
+	auto eth2
+	iface eth2 inet static
+		address 10.10.14.1
+		netmask 255.255.255.128
 
-up echo nameserver 192.168.122.1 > /etc/resolv.conf
-```
+	up echo nameserver 192.168.122.1 > /etc/resolv.conf
+	```
 
 - Fern (Router)
-```
-auto eth0
-iface eth0 inet static
-	address 10.10.14.2
-	netmask 255.255.255.128
-	gateway 10.10.14.1
+	```
+	auto eth0
+	iface eth0 inet static
+		address 10.10.14.2
+		netmask 255.255.255.128
+		gateway 10.10.14.1
 
-auto eth1
-iface eth1 inet static
-    address 10.10.14.133
-    netmask 255.255.255.252
+	auto eth1
+	iface eth1 inet static
+		address 10.10.14.133
+		netmask 255.255.255.252
 
-auto eth2
-iface eth2 inet static
-    address 10.10.14.129
-    netmask 255.255.255.252
+	auto eth2
+	iface eth2 inet static
+		address 10.10.14.129
+		netmask 255.255.255.252
 
-up echo nameserver 192.168.122.1 > /etc/resolv.conf
-```
+	up echo nameserver 192.168.122.1 > /etc/resolv.conf
+	```
 
 - Richter (Server)
-```
-auto eth0
-iface eth0 inet static
-	address 10.10.14.134
-	netmask 255.255.255.252
-	gateway 10.10.14.133
+	```
+	auto eth0
+	iface eth0 inet static
+		address 10.10.14.134
+		netmask 255.255.255.252
+		gateway 10.10.14.133
 
-up echo nameserver 192.168.122.1 > /etc/resolv.conf
-```
+	up echo nameserver 192.168.122.1 > /etc/resolv.conf
+	```
 
 - SchwerMountains (Client)
-```
-auto eth0
-iface eth0 inet dhcp
-```
+	```
+	auto eth0
+	iface eth0 inet dhcp
+	```
 
 - Revolte (Server)
-```
-auto eth0
-iface eth0 inet static
-	address 10.10.14.130
-	netmask 255.255.255.252
-	gateway 10.10.14.129
+	```
+	auto eth0
+	iface eth0 inet static
+		address 10.10.14.130
+		netmask 255.255.255.252
+		gateway 10.10.14.129
 
-up echo nameserver 192.168.122.1 > /etc/resolv.conf
-```
+	up echo nameserver 192.168.122.1 > /etc/resolv.conf
+	```
 
 ## Pembagian IP
-Sesuai konfigurasi network, maka pembagian IP untuk tiap subnet adalah sebagai berikut:
-![Alt text](pembagiannid.png)
-
-Lalu berikut merupakan pembagian IP untuk setiap node
+Sesuai konfigurasi network, berikut merupakan pembagian IP untuk setiap node
 | Node               | Subnet | Interface | IP Address    | Netmask         | Gateway        |
 |--------------------|--------|-----------|---------------|-----------------|----------------|
 | Aura (Router)      |   -    | eth0      | DHCP          | -               | -              |
