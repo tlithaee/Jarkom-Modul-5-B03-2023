@@ -608,17 +608,40 @@ iptables -A INPUT -m time --timestart 11:00 --timestop 13:00 --weekdays Fri -j R
 ## Number 7
 > Karena terdapat 2 WebServer, kalian diminta agar setiap client yang mengakses Sein dengan Port 80 akan didistribusikan secara bergantian pada Sein dan Stark secara berurutan dan request dari client yang mengakses Stark dengan port 443 akan didistribusikan secara bergantian pada Sein dan Stark secara berurutan.
 
+Pada router yang menghubungkan kedua webserver, misal jalankan command dibawah pada Heiter:
 ```
-iptables -A PREROUTING -t nat -p tcp --dport 80 -d 192.177.4.2 -m statistic --mode nth --every 2 --packet 0 -j DNAT --to-destination 192.177.4.2
+iptables -A PREROUTING -t nat -p tcp --dport 80 -d 10.10.8.2 -m statistic --mode nth --every 2 --packet 0 -j DNAT --to-destination 10.10.8.2
 
-iptables -A PREROUTING -t nat -p tcp --dport 80 -d 192.177.4.2 -j DNAT --to-destination 192.177.0.18
+iptables -A PREROUTING -t nat -p tcp --dport 80 -d 10.10.8.2 -j DNAT --to-destination 10.10.14.142
 
-iptables -A PREROUTING -t nat -p tcp --dport 443 -d 192.177.0.18 -m statistic --mode nth --every 2 --packet 0 -j DNAT --to-destination 192.177.0.18
+iptables -A PREROUTING -t nat -p tcp --dport 443 -d 10.10.14.142 -m statistic --mode nth --every 2 --packet 0 -j DNAT --to-destination 10.10.14.142
 
-iptables -A PREROUTING -t nat -p tcp --dport 443 -d 192.177.0.18 -j DNAT --to-destination 192.177.4.2
+iptables -A PREROUTING -t nat -p tcp --dport 443 -d 10.10.14.142 -j DNAT --to-destination 10.10.8.2
 ```
 
 ### Screenshot
+- Jalankan `iptables -t nat -L PREROUTING --line-numbers -v` di heiter
+	![Alt text](no7/image.png)
+- Untuk port 80
+  - Di Sein
+	![Alt text](no7/image-1.png)
+ 
+  - Di Stark
+	![Alt text](no7/image-2.png)
+
+  - Testing di TurkRegion
+	![Alt text](no7/image-3.png)
+
+- Untuk port 443
+  - Di Sein
+	![Alt text](no7/image-4.png)
+
+  - Di Stark
+	![Alt text](no7/image-5.png)
+
+  - Testing di TurkRegion
+	![Alt text](no7/image-6.png)
+
 
 ## Number 8
 > Karena berbeda koalisi politik, maka subnet dengan masyarakat yang berada pada Revolte dilarang keras mengakses WebServer hingga masa pencoblosan pemilu kepala suku 2024 berakhir. Masa pemilu (hingga pemungutan dan penghitungan suara selesai) kepala suku bersamaan dengan masa pemilu Presiden dan Wakil Presiden Indonesia 2024.
