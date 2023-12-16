@@ -6,7 +6,8 @@ Berikut adalah laporan resmi untuk praktikum modul 5 jarkom.
 |Wan Sabrina Mayzura | 5025211023 |
 |Syarifah Talitha Erfany | 5025211175 |
 
-## Daftar Isi
+# Daftar Isi
+- [Persiapan](#persiapan)
   - [Topologi dan Pembagian Subnet](#topologi-dan-pembagian-subnet)
   - [Rute](#rute)
   - [Tree](#tree)
@@ -14,6 +15,18 @@ Berikut adalah laporan resmi untuk praktikum modul 5 jarkom.
   - [Pembagian IP](#pembagian-ip)
   - [Routing](#routing)
   - [Konfigurasi Awal](#konfigurasi-awal)
+- [Solusi](#solusi)
+  - [Number 1](#number-1)
+  - [Number 2](#number-2)
+  - [Number 3](#number-3)
+  - [Number 4](#number-4)
+  - [Number 5](#number-5)
+  - [Number 6](#number-6)
+  - [Number 7](#number-7)
+  - [Number 8](#number-8)
+  - [Number 9](#number-9)
+  - [Number 10](#number-10)
+
 
 ## Topologi dan Pembagian Subnet
 ![Alt text](TopologiPrak5.png)
@@ -27,7 +40,6 @@ Berikut adalah laporan resmi untuk praktikum modul 5 jarkom.
 Sesuai perhitungan VLSM pembagian IP untuk tiap subnet adalah sebagai berikut:
 
 ![Alt text](pembagiannid.png)
-![Alt text](image-1.png)
 
 ## Konfigurasi GNS3
 
@@ -197,7 +209,7 @@ Sesuai perhitungan VLSM pembagian IP untuk tiap subnet adalah sebagai berikut:
 	```
 
 ## Pembagian IP
-Sesuai konfigurasi network, berikut merupakan pembagian IP untuk setiap node
+Sesuai konfigurasi network, berikut merupakan pembagian IP untuk setiap node:
 | Node               | Subnet | Interface | IP Address    | Netmask         | Gateway        |
 |--------------------|--------|-----------|---------------|-----------------|----------------|
 | Aura (Router)      |   -    | eth0      | DHCP          | -               | -              |
@@ -225,57 +237,56 @@ Sesuai konfigurasi network, berikut merupakan pembagian IP untuk setiap node
 | Revolte (Client)   |   A1   | eth0      | 10.10.14.130  | 255.255.255.252 | 10.10.14.129   |
 
 ## Routing
-
 - Aura
-```
-# ke arah Frieren
-# gateway menggunakan eth0 dari Frieren
-# Routing for subnets A1, A2, A3, A4, A5, A6
-up route add -net 10.10.14.128 netmask 255.255.255.252 gw 10.10.14.146
-up route add -net 10.10.14.132 netmask 255.255.255.252 gw 10.10.14.146
-up route add -net 10.10.14.0 netmask 255.255.255.128 gw 10.10.14.146
-up route add -net 10.10.12.0 netmask 255.255.254.0 gw 10.10.14.146
-up route add -net 10.10.14.136 netmask 255.255.255.252 gw 10.10.14.146
-up route add -net 10.10.14.140 netmask 255.255.255.252 gw 10.10.14.146
+	```
+	# ke arah Frieren
+	# gateway menggunakan eth0 dari Frieren
+	# Routing for subnets A1, A2, A3, A4, A5, A6
+	up route add -net 10.10.14.128 netmask 255.255.255.252 gw 10.10.14.146
+	up route add -net 10.10.14.132 netmask 255.255.255.252 gw 10.10.14.146
+	up route add -net 10.10.14.0 netmask 255.255.255.128 gw 10.10.14.146
+	up route add -net 10.10.12.0 netmask 255.255.254.0 gw 10.10.14.146
+	up route add -net 10.10.14.136 netmask 255.255.255.252 gw 10.10.14.146
+	up route add -net 10.10.14.140 netmask 255.255.255.252 gw 10.10.14.146
 
-# ke arah Heiter
-# gateway menggunakan eth0 dari Heiter
-# Routing for subnets A9, A10 
-up route add -net 10.10.0.0 netmask 255.255.248.0 gw 10.10.14.150
-up route add -net 10.10.8.0 netmask 255.255.252.0 gw 10.10.14.150
-```
+	# ke arah Heiter
+	# gateway menggunakan eth0 dari Heiter
+	# Routing for subnets A9, A10 
+	up route add -net 10.10.0.0 netmask 255.255.248.0 gw 10.10.14.150
+	up route add -net 10.10.8.0 netmask 255.255.252.0 gw 10.10.14.150
+	```
 
 - Heiter
-```
-route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.10.14.149
-```
+	```
+	route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.10.14.149
+	```
 
 - Frieren
-```
-# ke arah Himmel
-# gateway menggunakan eth0 dari Himmel
-# Routing for subnets A1, A2, A3, A4
-up route add -net 10.10.14.128 netmask 255.255.255.252 gw 10.10.14.138
-up route add -net 10.10.14.132 netmask 255.255.255.252 gw 10.10.14.138
-up route add -net 10.10.14.0 netmask 255.255.255.128 gw 10.10.14.138
-up route add -net 10.0.12.0 netmask 255.255.255.0 gw 10.10.14.138
-route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.10.14.145
-```
+	```
+	# ke arah Himmel
+	# gateway menggunakan eth0 dari Himmel
+	# Routing for subnets A1, A2, A3, A4
+	up route add -net 10.10.14.128 netmask 255.255.255.252 gw 10.10.14.138
+	up route add -net 10.10.14.132 netmask 255.255.255.252 gw 10.10.14.138
+	up route add -net 10.10.14.0 netmask 255.255.255.128 gw 10.10.14.138
+	up route add -net 10.0.12.0 netmask 255.255.255.0 gw 10.10.14.138
+	route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.10.14.145
+	```
 
 - Himmel
-```
-# ke arah Fern
-# gateway menggunakan eth0 dari Fern
-# Routing for subnets A1, A2
-up route add -net 10.10.14.128 netmask 255.255.255.252 gw 10.10.14.2
-up route add -net 10.10.14.132 netmask 255.255.255.252 gw 10.10.14.2
-route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.10.14.137
-```
+	```
+	# ke arah Fern
+	# gateway menggunakan eth0 dari Fern
+	# Routing for subnets A1, A2
+	up route add -net 10.10.14.128 netmask 255.255.255.252 gw 10.10.14.2
+	up route add -net 10.10.14.132 netmask 255.255.255.252 gw 10.10.14.2
+	route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.10.14.137
+	```
 
 - Fern
-```
-route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.10.14.1
-```
+	```
+	route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.10.14.1
+	```
 
 ## Konfigurasi Awal
 ### DHCP Server (Revolte)
@@ -391,7 +402,7 @@ route add -net 0.0.0.0 netmask 0.0.0.0 gw 10.10.14.1
 
 	service bind9 start
 	```
-
+# Solusi
 ## Number 1
 > Agar topologi yang kalian buat dapat mengakses keluar, kalian diminta untuk mengkonfigurasi Aura menggunakan iptables, tetapi tidak ingin menggunakan MASQUERADE.
 
@@ -417,31 +428,31 @@ iptables -t nat -A POSTROUTING -o eth0 -j SNAT --to-source $ETH0_IP
 ## Number 2
 > Kalian diminta untuk melakukan drop semua TCP dan UDP kecuali port 8080 pada TCP.
 
-```
+````
 apt install netcat
-```
+````
 
 - Script dibawah ditaruh di receiver saja
-```
-# Allow incoming TCP traffic on port 8080
-iptables -A INPUT -p tcp --dport 8080 -j ACCEPT
+	````
+	# Allow incoming TCP traffic on port 8080
+	iptables -A INPUT -p tcp --dport 8080 -j ACCEPT
 
-# Drop all other incoming TCP traffic
-iptables -A INPUT -p tcp -j DROP
+	# Drop all other incoming TCP traffic
+	iptables -A INPUT -p tcp -j DROP
 
-# Drop all other incoming UDP traffic
-iptables -A INPUT -p udp -j DROP
-```
+	# Drop all other incoming UDP traffic
+	iptables -A INPUT -p udp -j DROP
+	````
 
 - testing
 
-```
-nc -l -p 8080 di receiver 
-nc <ip receiver> 8080
+	```
+	nc -l -p 8080 di receiver 
+	nc <ip receiver> 8080
 
-nc -l -p <port lain> di receiver 
-nc <ip receiver> <port lain>
-```
+	nc -l -p <port lain> di receiver 
+	nc <ip receiver> <port lain>
+	```
 
 ### Screenshot
 
@@ -490,7 +501,7 @@ iptables -A INPUT -p icmp -m connlimit --connlimit-above 3 --connlimit-mask 0 -j
 > Lakukan pembatasan sehingga koneksi SSH pada Web Server hanya dapat dilakukan oleh masyarakat yang berada pada GrobeForest.
 
 ```
-iptables -A INPUT -p tcp --dport 22 -s 192.177.4.0/22 -j ACCEPT
+iptables -A INPUT -p tcp --dport 22 -s 10.10.8.0/22 -j ACCEPT
 
 iptables -A INPUT -p tcp --dport 22 -j DROP
 ```
