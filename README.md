@@ -192,7 +192,10 @@ up echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
 
 ## Pembagian IP
-Sesuai konfigurasi network, maka pembagian IP untuk tiap nodenya adalah sebagai berikut:
+Sesuai konfigurasi network, maka pembagian IP untuk tiap subnet adalah sebagai berikut:
+![Alt text](pembagiannid.png)
+
+Lalu berikut merupakan pembagian IP untuk setiap node
 | Node               | Subnet | Interface | IP Address    | Netmask         | Gateway        |
 |--------------------|--------|-----------|---------------|-----------------|----------------|
 | Aura (Router)      |   -    | eth0      | DHCP          | -               | -              |
@@ -400,14 +403,14 @@ iptables -t nat -A POSTROUTING -o eth0 -j SNAT --to-source $ETH0_IP
 
 - Router
 
-![](no1/aura.png)
+	![](no1/aura.png)
 
 - Server
 
-![](no1/stark.png)
+	![](no1/stark.png)
 
 - Client
-![](no1/turkregion.png)
+	![](no1/turkregion.png)
 
 ## Number 2
 > Kalian diminta untuk melakukan drop semua TCP dan UDP kecuali port 8080 pada TCP.
@@ -444,18 +447,20 @@ nc <ip receiver> <port lain>
 
 	- Stark as Sender
 
-	![](no2/stark1.png)
+		![](no2/stark1.png)
 
 	- Sein as Receiver
 
-	![](no2/sein.png)
+		![](no2/sein.png)
 
 - Server -> Client
 	- Stark as Sender
-	![Alt text](no2/stark2.png)
+
+		![Alt text](no2/stark2.png)
 
 	- TurkRegion as Receiver
-	![Alt text](no2/turkregion.png)
+
+		![Alt text](no2/turkregion.png)
 ## Number 3
 > Kepala Suku North Area meminta kalian untuk membatasi DHCP dan DNS Server hanya dapat dilakukan ping oleh maksimal 3 device secara bersamaan, selebihnya akan di drop.
 
