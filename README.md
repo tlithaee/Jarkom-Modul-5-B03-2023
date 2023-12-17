@@ -402,6 +402,8 @@ Sesuai konfigurasi network, berikut merupakan pembagian IP untuk setiap node:
 
 	service bind9 start
 	```
+
+**Kendala:** Tidak ada kendala pada pengerjaan nomor ini.
 # Solusi
 ## Number 1
 > Agar topologi yang kalian buat dapat mengakses keluar, kalian diminta untuk mengkonfigurasi Aura menggunakan iptables, tetapi tidak ingin menggunakan MASQUERADE.
@@ -425,6 +427,8 @@ iptables -t nat -A POSTROUTING -o eth0 -j SNAT --to-source $ETH0_IP
 - Client
 	
 	![](no1/turkregion.png)
+
+**Kendala:** Tidak ada kendala pada pengerjaan nomor ini.
 
 ## Number 2
 > Kalian diminta untuk melakukan drop semua TCP dan UDP kecuali port 8080 pada TCP.
@@ -475,7 +479,9 @@ apt install netcat
 	- TurkRegion as Receiver
 
 		![Alt text](no2/turkregion.png)
-		
+
+**Kendala:** Tidak ada kendala pada pengerjaan nomor ini.
+
 ## Number 3
 > Kepala Suku North Area meminta kalian untuk membatasi DHCP dan DNS Server hanya dapat dilakukan ping oleh maksimal 3 device secara bersamaan, selebihnya akan di drop.
 
@@ -498,6 +504,8 @@ iptables -A INPUT -p icmp -m connlimit --connlimit-above 3 --connlimit-mask 0 -j
 
 - node 4 (tidak bisa diping lagi)
 ![](no3/frieren.png)
+
+**Kendala:** Tidak ada kendala pada pengerjaan nomor ini.
 
 ## Number 4
 > Lakukan pembatasan sehingga koneksi SSH pada Web Server hanya dapat dilakukan oleh masyarakat yang berada pada GrobeForest.
@@ -538,6 +546,8 @@ iptables -A INPUT -p tcp --dport 22 -j REJECT
 
 		![](no4/stark2.png)
 
+**Kendala:** Tidak ada kendala pada pengerjaan nomor ini.
+
 ## Number 5
 > Selain itu, akses menuju WebServer hanya diperbolehkan saat jam kerja yaitu Senin-Jumat pada pukul 08.00-16.00.
 
@@ -566,6 +576,8 @@ iptables -A INPUT -j REJECT
   - Test ping dari GrobeForest dan unreachable
 
 	![Alt text](no5/image-3.png)
+
+**Kendala:** Tidak ada kendala pada pengerjaan nomor ini.
 
 ## Number 6
 > Lalu, karena ternyata terdapat beberapa waktu di mana network administrator dari WebServer tidak bisa stand by, sehingga perlu ditambahkan rule bahwa akses pada hari Senin - Kamis pada jam 12.00 - 13.00 dilarang (istirahat maksi cuy) dan akses di hari Jumat pada jam 11.00 - 13.00 juga dilarang (maklum, Jumatan rek).
@@ -605,6 +617,8 @@ iptables -A INPUT -m time --timestart 11:00 --timestop 13:00 --weekdays Fri -j R
   - Test ping dari GrobeForest dan unreachable
 
 	![Alt text](no6/image-5.png)
+
+**Kendala:** Tidak ada kendala pada pengerjaan nomor ini.
 
 ## Number 7
 > Karena terdapat 2 WebServer, kalian diminta agar setiap client yang mengakses Sein dengan Port 80 akan didistribusikan secara bergantian pada Sein dan Stark secara berurutan dan request dari client yang mengakses Stark dengan port 443 akan didistribusikan secara bergantian pada Sein dan Stark secara berurutan.
@@ -651,46 +665,73 @@ iptables -A PREROUTING -t nat -p tcp --dport 443 -d 10.10.14.142 -j DNAT --to-de
 	![Alt text](no7/image-6.png)
 
 
+**Kendala:** Tidak ada kendala pada pengerjaan nomor ini.
+
 ## Number 8
 > Karena berbeda koalisi politik, maka subnet dengan masyarakat yang berada pada Revolte dilarang keras mengakses WebServer hingga masa pencoblosan pemilu kepala suku 2024 berakhir. Masa pemilu (hingga pemungutan dan penghitungan suara selesai) kepala suku bersamaan dengan masa pemilu Presiden dan Wakil Presiden Indonesia 2024.
 
+Pada web server, jalankan command dibawah ini:
 ```
-Revolte_Subnet="NID A1/30"
+A1_Subnet="10.10.14.128/30"
 
-Pemilu_Start=$(date -d "2023-10-19T00:00" +"%Y-%m-%dT%H:%M")
+Pemilu_Start=$(date -d "2024-02-14T00:00" +"%Y-%m-%dT%H:%M")
 
-Pemilu_End=$(date -d "2024-02-15T00:00" +"%Y-%m-%dT%H:%M")
+Pemilu_End=$(date -d "2024-06-26T00:00" +"%Y-%m-%dT%H:%M")
 
-iptables -A INPUT -p tcp -s $Revolte_Subnet --dport 80 -m time --datestart "$Pemilu_Start" --datestop "$Pemilu_End" -j DROP
+iptables -A INPUT -s $A1_Subnet -m time --datestart $Pemilu_Start --datestop $Pemilu_End -j REJECT
 ```
 
 ### Screenshot
+- Testing pada Revolte pada masa pemilu `date --set="2024-03-15" #Within election period`
+
+	![Alt text](no8/image.png)
+
+- Testing pada Revolte diluar masa pemilu `date --set="2024-07-15" #Outside election period`
+
+	![Alt text](no8/image-1.png)
+
+
+**Kendala:** Tidak ada kendala pada pengerjaan nomor ini.
 
 ## Number 9
 > Sadar akan adanya potensial saling serang antar kubu politik, maka WebServer harus dapat secara otomatis memblokir  alamat IP yang melakukan scanning port dalam jumlah banyak (maksimal 20 scan port) di dalam selang waktu 10 menit. 
 (clue: test dengan nmap)
 
+Pada web server, jalankan command dibawah ini:
 ```
-iptables -N scan_port
+iptables -N no9
 
-iptables -A INPUT -m recent --name scan_port --update --seconds 600 --hitcount 20 -j DROP
+iptables -A INPUT -m recent --name no9 --update --seconds 600 --hitcount 20 -j REJECT
 
-iptables -A FORWARD -m recent --name scan_port --update --seconds 600 --hitcount 20 -j DROP
+iptables -A FORWARD -m recent --name no9 --update --seconds 600 --hitcount 20 -j REJECT
 
-iptables -A INPUT -m recent --name scan_port --set -j ACCEPT
+iptables -A INPUT -m recent --name no9 --set -j ACCEPT
 
-iptables -A FORWARD -m recent --name scan_port --set -j ACCEPT
+iptables -A FORWARD -m recent --name no9 --set -j ACCEPT
 ```
-
-*blum pasti bener*
 
 ### Screenshot
+- Testing ping dari client ke Stark sebanyak 25 kali sebelum diterapkan iptables
+
+	![Alt text](no9/image.png)
+
+- Testing ping dari client ke Stark sebanyak 25 kali setelah diterapkan iptables
+
+	![Alt text](no9/image-1.png)
+
+**Kendala:** Tidak ada kendala pada pengerjaan nomor ini.
 
 ## Number 10
 > Karena kepala suku ingin tau paket apa saja yang di-drop, maka di setiap node server dan router ditambahkan logging paket yang di-drop dengan standard syslog level. 
 
+Pada web server, jalankan command dibawah ini:
 ```
-iptables -A INPUT  -j LOG --log-level debug --log-prefix 'Dropped Packet' -m limit --limit 1/second --limit-burst 10
+iptables -A INPUT -j LOG --log-level debug --log-prefix "Dropped Packet: "
 ```
 
 ### Screenshot
+- Lihat dengan menggunakan `iptables -L`
+	
+	![Alt text](no10/image.png)
+
+**Kendala:** Tidak ada kendala pada pengerjaan nomor ini.
