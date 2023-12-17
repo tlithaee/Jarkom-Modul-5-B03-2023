@@ -403,7 +403,6 @@ Sesuai konfigurasi network, berikut merupakan pembagian IP untuk setiap node:
 	service bind9 start
 	```
 
-**Kendala:** Tidak ada kendala pada pengerjaan nomor ini.
 # Solusi
 ## Number 1
 > Agar topologi yang kalian buat dapat mengakses keluar, kalian diminta untuk mengkonfigurasi Aura menggunakan iptables, tetapi tidak ingin menggunakan MASQUERADE.
