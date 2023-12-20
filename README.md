@@ -32,7 +32,20 @@ Berikut adalah laporan resmi untuk praktikum modul 5 jarkom.
 ![Alt text](TopologiPrak5.png)
 
 ## Rute
-![Alt text](rute.png)
+| Nama Subnet | Rute                           | Jumlah IP | Netmask | Allocated Size | Netmask           |
+|-------------|--------------------------------|-----------|---------|----------------|-------------------|
+| A1          | Fern - Switch2 - Revolte       | 2         | /30     | 4              | 255.255.255.252   |
+| A2          | Fern - Richter                 | 2         | /30     | 4              | 255.255.255.252   |
+| A3          | Fern - Switch1 - Himmel - Switch1 - SchwerMountains | 66 | /25 | 128 | 255.255.255.128 |
+| A4          | Himmel - LaubHills             | 256       | /23     | 512            | 255.255.254.0     |
+| A5          | Himmel - Friern                | 2         | /30     | 4              | 255.255.255.252   |
+| A6          | Friern - Stark                 | 2         | /30     | 4              | 255.255.255.252   |
+| A7          | Friern - Aura                  | 2         | /30     | 4              | 255.255.255.252   |
+| A8          | Aura - Heiter                  | 2         | /30     | 4              | 255.255.255.252   |
+| A9          | Heiter - TurkRegion            | 1023      | /22     | 1024           | 255.255.252.0     |
+| A10         | Heiter - Switch3 - Sein - Switch3 - GrobeForest | 514 | /22 | 1024 | 255.255.252.0 |
+| **Total IP**|                                | **1871**  | **/20** | **4096**       | **255.255.240.0** |
+
 
 ## Tree
 ![Alt text](TreeVLSM.png)
