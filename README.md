@@ -42,7 +42,7 @@ Berikut adalah laporan resmi untuk praktikum modul 5 jarkom.
 | A6          | Friern - Stark                 | 2         | /30     | 4              | 255.255.255.252   |
 | A7          | Friern - Aura                  | 2         | /30     | 4              | 255.255.255.252   |
 | A8          | Aura - Heiter                  | 2         | /30     | 4              | 255.255.255.252   |
-| A9          | Heiter - TurkRegion            | 1023      | /22     | 1024           | 255.255.252.0     |
+| A9          | Heiter - TurkRegion            | 1023      | /21     | 2046           | 255.255.252.0     |
 | A10         | Heiter - Switch3 - Sein - Switch3 - GrobeForest | 514 | /22 | 1024 | 255.255.252.0 |
 | **Total IP**|                                | **1871**  | **/20** | **4096**       | **255.255.240.0** |
 
