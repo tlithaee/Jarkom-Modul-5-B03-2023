@@ -626,7 +626,7 @@ iptables -A INPUT -m time --timestart 11:00 --timestop 13:00 --weekdays Fri -j R
 
 	![Alt text](no6/image-4.png)
 	
-  - Test ping dari GrobeForest dan unreachable
+  - Test ping dari GrobeForest dan berhasil
 
 	![Alt text](no6/image-5.png)
 
